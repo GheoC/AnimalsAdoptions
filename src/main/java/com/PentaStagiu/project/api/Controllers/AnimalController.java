@@ -1,14 +1,9 @@
-package com.PentaStagiu.project.Controllers;
+package com.PentaStagiu.project.api.Controllers;
 
 import com.PentaStagiu.project.Model.Animal;
 import com.PentaStagiu.project.Repository.AnimalStore;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/animals")
@@ -52,7 +47,6 @@ public class AnimalController
                 break;
             }
         }
-
     }
 
     @DeleteMapping("/{name}")
