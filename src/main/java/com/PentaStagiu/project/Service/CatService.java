@@ -18,7 +18,7 @@ public class CatService
 
     public void addCat(Cat cat)
     {
-        if (cat.getName()==null && cat.getUrl()==null)
+        if (cat.getName()==null || cat.getUrl()==null)
         {
             throw new RuntimeException("Cat must have a name and a photo");
         }
@@ -38,6 +38,24 @@ public class CatService
 
         return catRepository.findCatByName(name);
 
+    }
+
+    public Cat findCatById(Integer id)
+    {
+        return catRepository.findCatById(id);
+    }
+
+    public void updateCat(Integer id, Cat cat)
+    {
+        Cat catToSave = catRepository.findCatById(id);
+        catToSave.setName(cat.getName())
+                .setUrl(cat.getUrl());
+        catRepository.save(catToSave);
+    }
+
+    public void deleteCat(Integer id)
+    {
+        catRepository.delete(findCatById(id));
     }
 
 

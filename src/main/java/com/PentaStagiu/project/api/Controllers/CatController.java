@@ -36,8 +36,26 @@ public class CatController
     public ResponseEntity<Cat> getCatByName(@PathVariable("name") String name)
     {
         return ResponseEntity.ok(catService.findCatByName(name));
-
-
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cat> getCatByName(@PathVariable("id") Integer id)
+    {
+        return ResponseEntity.ok(catService.findCatById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Cat> updateCat(@PathVariable("id") Integer id, @RequestBody Cat cat)
+    {
+        catService.updateCat(id,cat);
+        return ResponseEntity.ok(catService.findCatById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCat(@PathVariable("id") Integer id)
+    {
+        catService.deleteCat(id);
+    }
+
 
 }

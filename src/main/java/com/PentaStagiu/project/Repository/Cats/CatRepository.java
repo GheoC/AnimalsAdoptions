@@ -9,4 +9,6 @@ public interface CatRepository extends JpaRepository<Cat,Integer>
 
     Cat findCatByName(String name);
 
+    Cat findCatById(Integer id);
+
 }
