@@ -1,6 +1,6 @@
 package com.PentaStagiu.project.api.Controllers;
 
-import com.PentaStagiu.project.Repository.Cats.Cat;
+import com.PentaStagiu.project.Model.CatDTO;
 import com.PentaStagiu.project.Service.CatService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,34 +20,28 @@ public class CatController
     }
 
     @GetMapping
-    public ResponseEntity getAllCats()
+    public ResponseEntity<List<CatDTO>> getAllCats()
     {
-        List<Cat> catList = catService.findAll();
+        List<CatDTO> catList = catService.findAll();
         return ResponseEntity.ok(catList);
     }
 
     @PostMapping
-    public void addCat(@RequestBody Cat cat)
+    public void addCat(@RequestBody CatDTO catDTO)
     {
-        catService.addCat(cat);
-    }
-
-    @GetMapping("/{name}")
-    public ResponseEntity<Cat> getCatByName(@PathVariable("name") String name)
-    {
-        return ResponseEntity.ok(catService.findCatByName(name));
+        catService.addCat(catDTO);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cat> getCatByName(@PathVariable("id") Integer id)
+    public ResponseEntity<CatDTO> getCatByName(@PathVariable("id") Integer id)
     {
         return ResponseEntity.ok(catService.findCatById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cat> updateCat(@PathVariable("id") Integer id, @RequestBody Cat cat)
+    public ResponseEntity<CatDTO> updateCat(@PathVariable("id") Integer id, @RequestBody CatDTO catDTO)
     {
-        catService.updateCat(id,cat);
+        catService.updateCat(id,catDTO);
         return ResponseEntity.ok(catService.findCatById(id));
     }
 

@@ -1,5 +1,7 @@
 package com.PentaStagiu.project.Service;
 
+import com.PentaStagiu.project.Model.Adapters.DogAdapter;
+import com.PentaStagiu.project.Model.DogDTO;
 import com.PentaStagiu.project.Repository.Dog.Dog;
 import com.PentaStagiu.project.Repository.Dog.DogRepository;
 import org.springframework.stereotype.Service;
@@ -14,31 +16,27 @@ public class DogService {
         this.dogRepository = dogRepository;
     }
 
-    public List<Dog> findAllDogs() {
-        return dogRepository.findAll();
+    public List<DogDTO> findAllDogs() {
+        return DogAdapter.listToDto(dogRepository.findAll());
     }
 
-    public void addDog(Dog dog) {
-        if (dog.getName() == null || dog.getUrl() == null) {
+    public void addDog(DogDTO dogDTO) {
+        if (dogDTO.getName() == null || dogDTO.getPhotoUrl() == null) {
             throw new RuntimeException("Dog need to have some atributes");
         }
 
-        Dog dogToSave = new Dog()
-                .setName(dog.getName())
-                .setUrl(dog.getUrl());
-
-        dogRepository.save(dogToSave);
+        dogRepository.save(DogAdapter.fromDto(dogDTO));
     }
 
-    public Dog findDogById(Integer id) {
-        return dogRepository.findDogById(id);
+    public DogDTO findDogById(Integer id) {
+        return DogAdapter.toDto(dogRepository.findDogById(id));
     }
 
-    public void updateDog(Integer id, Dog dog) {
+    public void updateDog(Integer id, DogDTO dogDTO) {
         Dog dogToSave = dogRepository.findDogById(id);
         dogToSave
-                .setName(dog.getName())
-                .setUrl(dog.getUrl());
+                .setName(dogDTO.getName())
+                .setUrl(dogDTO.getPhotoUrl());
 
         dogRepository.save(dogToSave);
     }

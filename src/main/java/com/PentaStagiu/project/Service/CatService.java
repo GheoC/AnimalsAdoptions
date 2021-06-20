@@ -1,5 +1,7 @@
 package com.PentaStagiu.project.Service;
 
+import com.PentaStagiu.project.Model.Adapters.CatAdapter;
+import com.PentaStagiu.project.Model.CatDTO;
 import com.PentaStagiu.project.Repository.Cats.Cat;
 import com.PentaStagiu.project.Repository.Cats.CatRepository;
 import org.springframework.stereotype.Service;
@@ -16,48 +18,43 @@ public class CatService
         this.catRepository = catRepository;
     }
 
-    public void addCat(Cat cat)
+    public void addCat(CatDTO catDTO)
     {
-        if (cat.getName()==null || cat.getUrl()==null)
+        if (catDTO.getName()==null || catDTO.getPhotoUrl()==null)
         {
             throw new RuntimeException("Cat must have a name and a photo");
         }
-        Cat catToSave = new Cat()
-                .setName(cat.getName())
-                .setUrl(cat.getUrl());
-        catRepository.save(cat);
+
+        catRepository.save(CatAdapter.fromDto(catDTO));
     }
 
-    public List<Cat> findAll()
+    public List<CatDTO> findAll()
     {
-        return catRepository.findAll();
+        List<Cat> catList =catRepository.findAll();
+        return CatAdapter.toListDto(catList);
     }
 
-    public Cat findCatByName(String name)
+    //replaced by findCatById
+    public CatDTO findCatByName(String name)
     {
-
-        return catRepository.findCatByName(name);
-
+        return CatAdapter.toDto(catRepository.findCatByName(name));
     }
 
-    public Cat findCatById(Integer id)
+    public CatDTO findCatById(Integer id)
     {
-        return catRepository.findCatById(id);
+        return CatAdapter.toDto(catRepository.findCatById(id));
     }
 
-    public void updateCat(Integer id, Cat cat)
+    public void updateCat(Integer id, CatDTO catDTO)
     {
         Cat catToSave = catRepository.findCatById(id);
-        catToSave.setName(cat.getName())
-                .setUrl(cat.getUrl());
+        catToSave.setName(catDTO.getName())
+                .setUrl(catDTO.getPhotoUrl());
         catRepository.save(catToSave);
     }
 
     public void deleteCat(Integer id)
     {
-        catRepository.delete(findCatById(id));
+        catRepository.delete(catRepository.findCatById(id));
     }
-
-
-
 }

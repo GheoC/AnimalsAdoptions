@@ -1,15 +1,26 @@
 package com.PentaStagiu.project.Model;
 
 public class Animal {
+    private Integer id;
     private String name;
     private String photoUrl;
 
     public Animal() {
     }
 
-    public Animal(String name, String photoUrl) {
+    public Animal(Integer id, String name, String photoUrl) {
+        this.id = id;
         this.name = name;
         this.photoUrl = photoUrl;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Animal setId(Integer id) {
+        this.id = id;
+        return this;
     }
 
     public String getName() {

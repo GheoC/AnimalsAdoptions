@@ -1,9 +1,11 @@
 package com.PentaStagiu.project.api.Controllers;
 
-import com.PentaStagiu.project.Repository.Dog.Dog;
+import com.PentaStagiu.project.Model.DogDTO;
 import com.PentaStagiu.project.Service.DogService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/dogs")
@@ -16,27 +18,27 @@ public class DogController
     }
 
     @GetMapping
-    public ResponseEntity getAllDogs()
+    public ResponseEntity<List<DogDTO>> getAllDogs()
     {
         return ResponseEntity.ok(dogService.findAllDogs());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Dog> getDogById(@PathVariable(name = "id") Integer id)
+    public ResponseEntity<DogDTO> getDogById(@PathVariable(name = "id") Integer id)
     {
         return ResponseEntity.ok(dogService.findDogById(id));
     }
 
     @PostMapping()
-    void addDog(@RequestBody Dog dog)
+    public void addDog(@RequestBody DogDTO dogDTO)
     {
-        dogService.addDog(dog);
+        dogService.addDog(dogDTO);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Dog> updateDog(@PathVariable("id") Integer id, @RequestBody Dog dog)
+    public ResponseEntity<DogDTO> updateDog(@PathVariable("id") Integer id, @RequestBody DogDTO dogDTO)
     {
-        dogService.updateDog(id,dog);
+        dogService.updateDog(id,dogDTO);
 
         return ResponseEntity.ok(dogService.findDogById(id));
     }
