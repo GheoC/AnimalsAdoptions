@@ -10,7 +10,7 @@ public class DogAdapter
 {
     public static Dog fromDto(DogDTO dogDTO)
     {
-        return new Dog()
+        return (Dog) new Dog()
                 .setName(dogDTO.getName())
                 .setUrl(dogDTO.getPhotoUrl());
     }

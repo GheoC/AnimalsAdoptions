@@ -1,14 +1,14 @@
 package com.PentaStagiu.project.Model;
 
-public class Animal {
+public class AnimalDTO {
     private Integer id;
     private String name;
     private String photoUrl;
 
-    public Animal() {
+    public AnimalDTO() {
     }
 
-    public Animal(Integer id, String name, String photoUrl) {
+    public AnimalDTO(Integer id, String name, String photoUrl) {
         this.id = id;
         this.name = name;
         this.photoUrl = photoUrl;
@@ -18,7 +18,7 @@ public class Animal {
         return id;
     }
 
-    public Animal setId(Integer id) {
+    public AnimalDTO setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -27,7 +27,7 @@ public class Animal {
         return name;
     }
 
-    public Animal setName(String name) {
+    public AnimalDTO setName(String name) {
         this.name = name;
         return this;
     }
@@ -36,7 +36,7 @@ public class Animal {
         return photoUrl;
     }
 
-    public Animal setPhotoUrl(String photoUrl) {
+    public AnimalDTO setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
         return this;
     }

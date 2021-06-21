@@ -1,6 +1,6 @@
 package com.PentaStagiu.project.Model;
 
-public class DogDTO extends Animal {
+public class DogDTO extends AnimalDTO {
 
     public DogDTO()
     {

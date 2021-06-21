@@ -1,43 +1,23 @@
 package com.PentaStagiu.project.Repository.Dog;
 
+import com.PentaStagiu.project.Repository.Animals.Animal;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="dog")
-public class Dog
+public class Dog extends Animal
 {
+    private String size;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    private String name;
-    private String url;
-
-    public Integer getId() {
-        return id;
+    public Dog() {
     }
 
-    public Dog setId(Integer id) {
-        id = id;
-        return this;
+    public String getSize() {
+        return size;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Dog setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public Dog setUrl(String url) {
-        this.url = url;
+    public Dog setSize(String size) {
+        this.size = size;
         return this;
     }
 }

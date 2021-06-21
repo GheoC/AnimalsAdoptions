@@ -1,6 +1,6 @@
 package com.PentaStagiu.project.Repository;
 
-import com.PentaStagiu.project.Model.Animal;
+import com.PentaStagiu.project.Model.AnimalDTO;
 import com.PentaStagiu.project.Model.CatDTO;
 import com.PentaStagiu.project.Model.DogDTO;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AnimalStore {
 
-    public static final List<Animal> available = new ArrayList<>()
+    public static final List<AnimalDTO> available = new ArrayList<>()
     {
         {
             add(new DogDTO(1, "Alfi","My name is Alfi"));

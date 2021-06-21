@@ -1,6 +1,6 @@
 package com.PentaStagiu.project.Model;
 
-public class CatDTO extends Animal
+public class CatDTO extends AnimalDTO
 {
     public CatDTO() {
     }

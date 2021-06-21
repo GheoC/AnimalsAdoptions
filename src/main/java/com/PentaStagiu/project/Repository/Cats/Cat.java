@@ -1,44 +1,23 @@
 package com.PentaStagiu.project.Repository.Cats;
 
+import com.PentaStagiu.project.Repository.Animals.Animal;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cat")
-public class Cat
+public class Cat extends Animal
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer id;
-    @Column(name = "name")
-    private String name;
-    @Column(name = "url")
-    private String url;
+    private String purrLevel;
 
-    public Integer getId() {
-        return id;
+    public Cat() {
     }
 
-    public Cat setId(Integer id) {
-        this.id = id;
-        return this;
+    public String getPurrLevel() {
+        return purrLevel;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Cat setName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public Cat setUrl(String url) {
-        this.url = url;
+    public Cat setPurrLevel(String purrLevel) {
+        this.purrLevel = purrLevel;
         return this;
     }
 }

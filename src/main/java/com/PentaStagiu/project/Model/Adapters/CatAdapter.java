@@ -10,7 +10,7 @@ public class CatAdapter
 {
     public static Cat fromDto(CatDTO catDTO)
     {
-        return new Cat()
+        return (Cat) new Cat()
                 .setName(catDTO.getName())
                 .setUrl(catDTO.getPhotoUrl());
     }

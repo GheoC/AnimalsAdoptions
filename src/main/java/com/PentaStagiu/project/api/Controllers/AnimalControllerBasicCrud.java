@@ -1,13 +1,13 @@
 package com.PentaStagiu.project.api.Controllers;
 
-import com.PentaStagiu.project.Model.Animal;
+import com.PentaStagiu.project.Model.AnimalDTO;
 import com.PentaStagiu.project.Repository.AnimalStore;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/animals")
-public class AnimalController
+public class AnimalControllerBasicCrud
 {
     @GetMapping("/hello")
     public ResponseEntity<String> greetOwner(@RequestParam(name = "name",required = false) String ownerName)
@@ -25,7 +25,7 @@ public class AnimalController
     }
 
     @PostMapping
-    public ResponseEntity<Animal> addAnimal(@RequestBody Animal animal)
+    public ResponseEntity<AnimalDTO> addAnimal(@RequestBody AnimalDTO animal)
     {
         if (animal ==null && animal.getName()==null && animal.getPhotoUrl()==null)
         {
@@ -36,9 +36,9 @@ public class AnimalController
     }
 
     @PutMapping("/{name}")
-    public void updateAnimal(@PathVariable(name= "name") String name, @RequestBody Animal updatedAnimal)
+    public void updateAnimal(@PathVariable(name= "name") String name, @RequestBody AnimalDTO updatedAnimal)
     {
-        for (Animal a: AnimalStore.available)
+        for (AnimalDTO a: AnimalStore.available)
         {
             if (a.getName().equals(name))
             {
@@ -52,7 +52,7 @@ public class AnimalController
     @DeleteMapping("/{name}")
     public void deleteAnima(@PathVariable(name = "name") String name)
     {
-        for (Animal a: AnimalStore.available)
+        for (AnimalDTO a: AnimalStore.available)
         {
             if (a.getName().equals(name))
             {
