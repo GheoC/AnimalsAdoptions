@@ -13,6 +13,7 @@ public class AnimalShelterAdapter
         {
             shelterDTO.setName("Generic shelter");
         }
+
         return new AnimalShelter()
                 .setName(shelterDTO.getName())
                 .setAddress(shelterDTO.getAddress())
